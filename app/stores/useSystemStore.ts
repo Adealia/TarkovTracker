@@ -26,6 +26,13 @@ export const useSystemStore = defineStore<string, SystemState, SystemGetters>("s
 export function useSystemStoreWithSupabase() {
   const systemStore = useSystemStore();
   const { $supabase } = useNuxtApp();
+  const handleSystemSnapshot = (data: Record<string, unknown> | null) => {
+    if (data && "team_id" in data) {
+      systemStore.$patch({ team: (data as { team_id: string | null }).team_id });
+    } else if (data === null) {
+      systemStore.$patch({ team: null });
+    }
+  };
   // Computed reference to the system document
   const systemFilter = computed(() => {
     if ($supabase.user.loggedIn && $supabase.user.id) {
@@ -39,6 +46,7 @@ export function useSystemStoreWithSupabase() {
     table: "user_system",
     filter: systemFilter.value,
     storeId: "system",
+    onData: handleSystemSnapshot,
   });
   // Watch for filter changes to update listener
   watch(systemFilter, (newFilter) => {

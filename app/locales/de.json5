@@ -229,6 +229,7 @@
           leave_team: "Verlasse Team",
           create_team_success: "Erfolgreich ein neues Team erstellt.",
           create_team_error: "Erstellung eines neues Teams fehlgeschlagen.",
+          create_team_error_ui_update: "Teamzustand wurde nicht aktualisiert. Bitte neu laden oder erneut versuchen.",
           disband_team_success: "Erfolgreich das Team aufgelöst.",
           leave_team_success: "Erfolgreich das Team verlassen.",
           leave_team_error: "Team verlassen fehlgeschlagen.",

@@ -260,6 +260,7 @@
           leave_team: "Quitter l'équipe",
           create_team_success: "Nouvelle équipe créée avec succès.",
           create_team_error: "Erreur lors de la création de la nouvelle équipe.",
+          create_team_error_ui_update: "L'état de l'équipe ne s'est pas mis à jour. Rechargez ou réessayez.",
           disband_team_success: "Équipe dissoute avec succès.",
           leave_team_success: "Équipe quittée avec succès.",
           leave_team_error: "Échec de la sortie de l'équipe.",

@@ -296,6 +296,7 @@
           leave_team: "Leave team",
           create_team_success: "Successfully created a new team.",
           create_team_error: "Failed to create a new team.",
+          create_team_error_ui_update: "Team state did not refresh. Please reload to see your team or try again.",
           disband_team_success: "Successfully disbanded your team.",
           leave_team_success: "Successfully left your team.",
           leave_team_error: "Failed to leave your team.",

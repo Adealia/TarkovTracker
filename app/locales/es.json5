@@ -218,6 +218,7 @@
           leave_team: "Dejar equipo",
           create_team_success: "Se ha creado correctamente un nuevo equipo.",
           create_team_error: "Error al crear un nuevo equipo.",
+          create_team_error_ui_update: "El estado del equipo no se actualizó. Recarga o inténtalo de nuevo.",
           disband_team_success: "Se ha disuelto correctamente tu equipo.",
           leave_team_success: "Has dejado tu equipo correctamente.",
           leave_team_error: "Error al dejar tu equipo.",

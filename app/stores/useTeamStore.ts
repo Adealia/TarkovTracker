@@ -53,7 +53,20 @@ export function useTeamStoreWithSupabase() {
     }
     return undefined;
   });
-  const handleTeamSnapshot = (_data: Record<string, unknown> | null) => {};
+  const handleTeamSnapshot = (data: Record<string, unknown> | null) => {
+    if (data) {
+      const patch: Record<string, unknown> = { ...data };
+      if ("owner_id" in data) {
+        patch.owner = (data as { owner_id: string }).owner_id;
+      }
+      if ("join_code" in data) {
+        patch.password = (data as { join_code: string }).join_code;
+      }
+      teamStore.$patch(patch);
+    } else {
+      teamStore.$reset();
+    }
+  };
   // Setup Supabase listener
   const { cleanup, isSubscribed } = useSupabaseListener({
     store: teamStore,
