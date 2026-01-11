@@ -401,30 +401,50 @@
           markerColor = '#3b82f6'; // blue-500
           break;
       }
+      const extractDot = L.circleMarker([latLng.lat, latLng.lng], {
+        radius: 3,
+        fillColor: markerColor,
+        fillOpacity: 1,
+        color: '#0b0b0f',
+        weight: 1,
+        opacity: 1,
+        interactive: false,
+      });
       // Create custom icon for extracts
       // Use inline styles instead of Tailwind classes since Leaflet injects these outside Vue context
+      const extractBadge = document.createElement('div');
+      extractBadge.setAttribute('title', extract.name);
+      extractBadge.setAttribute('aria-label', extract.name);
+      extractBadge.style.display = 'inline-flex';
+      extractBadge.style.alignItems = 'center';
+      extractBadge.style.gap = '6px';
+      extractBadge.style.padding = '3px 6px';
+      extractBadge.style.borderRadius = '999px';
+      extractBadge.style.backgroundColor = 'rgba(26, 26, 30, 0.9)';
+      extractBadge.style.border = `2px solid ${markerColor}`;
+      extractBadge.style.fontSize = '11px';
+      extractBadge.style.lineHeight = '1';
+      extractBadge.style.color = '#e5e5e5';
+      extractBadge.style.boxShadow = '0 2px 4px rgba(0,0,0,0.5)';
+      extractBadge.style.whiteSpace = 'nowrap';
+      extractBadge.style.transform = 'translate(-50%, calc(-100% - 6px))';
+      const extractLabel = document.createElement('span');
+      extractLabel.style.fontWeight = '600';
+      extractLabel.textContent = extract.name;
+      extractBadge.appendChild(extractLabel);
       const extractIcon = L.divIcon({
         className: 'extract-marker',
-        html: `<div title="${extract.name}" aria-label="${extract.name}" style="
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 3px 6px;
-        border-radius: 999px;
-        background-color: rgba(26, 26, 30, 0.9);
-        border: 2px solid ${markerColor};
-        font-size: 11px;
-        line-height: 1;
-        color: #e5e5e5;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        white-space: nowrap;
-        transform: translate(-50%, -50%);
-      ">
-        <span style="font-weight: 600;">${extract.name}</span>
-      </div>`,
+        html: extractBadge,
+        iconAnchor: [0, 0],
+        iconSize: undefined,
       });
-      const marker = L.marker([latLng.lat, latLng.lng], { icon: extractIcon });
-      extractLayer.value!.addLayer(marker);
+      const labelMarker = L.marker([latLng.lat, latLng.lng], {
+        icon: extractIcon,
+        interactive: false,
+        zIndexOffset: 1000,
+      });
+      extractLayer.value!.addLayer(extractDot);
+      extractLayer.value!.addLayer(labelMarker);
     });
   }
   /**
