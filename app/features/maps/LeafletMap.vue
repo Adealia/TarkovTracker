@@ -401,46 +401,30 @@
           markerColor = '#3b82f6'; // blue-500
           break;
       }
-      const iconHtml = `<span style="
-      display: inline-block;
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background-color: ${markerColor};
-    "></span>`;
       // Create custom icon for extracts
       // Use inline styles instead of Tailwind classes since Leaflet injects these outside Vue context
       const extractIcon = L.divIcon({
         className: 'extract-marker',
         html: `<div style="
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        justify-content: center;
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
-        background-color: #1a1a1e;
+        gap: 6px;
+        padding: 3px 6px;
+        border-radius: 999px;
+        background-color: rgba(26, 26, 30, 0.9);
         border: 2px solid ${markerColor};
-        font-size: 12px;
+        font-size: 11px;
+        line-height: 1;
+        color: #e5e5e5;
         box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-      ">${iconHtml}</div>`,
+        white-space: nowrap;
+      ">
+        <span style="font-weight: 600;">${extract.name}</span>
+      </div>`,
         iconSize: [24, 24],
         iconAnchor: [12, 12],
       });
       const marker = L.marker([latLng.lat, latLng.lng], { icon: extractIcon });
-      // Popup with extract info
-      const factionText = isCoop
-        ? 'Co-op (PMC + Scav)'
-        : extract.faction
-          ? extract.faction.charAt(0).toUpperCase() + extract.faction.slice(1)
-          : 'Unknown';
-      const popupContent = `
-      <div class="text-sm">
-        <div class="font-semibold">${extract.name}</div>
-        <div class="text-gray-400">Faction: ${factionText}</div>
-      </div>
-    `;
-      attachTogglePopup(marker, popupContent, () => marker.getLatLng());
       extractLayer.value!.addLayer(marker);
     });
   }
