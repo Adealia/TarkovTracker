@@ -418,11 +418,10 @@
         color: #e5e5e5;
         box-shadow: 0 2px 4px rgba(0,0,0,0.5);
         white-space: nowrap;
+        transform: translate(-50%, -50%);
       ">
         <span style="font-weight: 600;">${extract.name}</span>
       </div>`,
-        iconSize: [24, 24],
-        iconAnchor: [12, 12],
       });
       const marker = L.marker([latLng.lat, latLng.lng], { icon: extractIcon });
       extractLayer.value!.addLayer(marker);
