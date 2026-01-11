@@ -405,7 +405,7 @@
       // Use inline styles instead of Tailwind classes since Leaflet injects these outside Vue context
       const extractIcon = L.divIcon({
         className: 'extract-marker',
-        html: `<div style="
+        html: `<div title="${extract.name}" aria-label="${extract.name}" style="
         display: inline-flex;
         align-items: center;
         gap: 6px;
